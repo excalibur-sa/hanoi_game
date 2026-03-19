@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汉诺塔可视化 - 超级玛丽主题</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <header class="title-area">
+            <h1>🏰 汉诺塔 🏰</h1>
+            <p class="subtitle">Tower of Hanoi - Super Mario Theme</p>
+        </header>
+
+        <main class="visualization-area">
+            <div class="sky-background">
+                <div class="cloud cloud-1"></div>
+                <div class="cloud cloud-2"></div>
+                <div class="cloud cloud-3"></div>
+                <div class="bush bush-1"></div>
+                <div class="bush bush-2"></div>
+            </div>
+            
+            <div class="towers-container">
+                <div class="tower" id="tower-A" data-tower="A">
+                    <div class="pipe">
+                        <div class="pipe-top"></div>
+                        <div class="pipe-body"></div>
+                    </div>
+                    <div class="disks-container"></div>
+                    <span class="tower-label">A</span>
+                </div>
+                
+                <div class="tower" id="tower-B" data-tower="B">
+                    <div class="pipe">
+                        <div class="pipe-top"></div>
+                        <div class="pipe-body"></div>
+                    </div>
+                    <div class="disks-container"></div>
+                    <span class="tower-label">B</span>
+                </div>
+                
+                <div class="tower" id="tower-C" data-tower="C">
+                    <div class="pipe">
+                        <div class="pipe-top"></div>
+                        <div class="pipe-body"></div>
+                    </div>
+                    <div class="disks-container"></div>
+                    <span class="tower-label">C</span>
+                </div>
+            </div>
+            
+            <div class="ground"></div>
+        </main>
+
+        <footer class="panels-container">
+            <div class="control-panel">
+                <h2>控制面板</h2>
+                
+                <div class="control-group">
+                    <label for="disk-count">圆盘数量:</label>
+                    <div class="number-input">
+                        <button class="btn-decrease" onclick="changeDiskCount(-1)">-</button>
+                        <input type="number" id="disk-count" min="1" max="10" value="3">
+                        <button class="btn-increase" onclick="changeDiskCount(1)">+</button>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label>速度:</label>
+                    <div class="speed-buttons">
+                        <button class="speed-btn" data-speed="slow" onclick="setSpeed('slow')">慢</button>
+                        <button class="speed-btn active" data-speed="medium" onclick="setSpeed('medium')">中</button>
+                        <button class="speed-btn" data-speed="fast" onclick="setSpeed('fast')">快</button>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label>模式:</label>
+                    <div class="mode-buttons">
+                        <button class="mode-btn active" data-mode="auto" onclick="setMode('auto')">自动</button>
+                        <button class="mode-btn" data-mode="manual" onclick="setMode('manual')">手动</button>
+                    </div>
+                </div>
+                
+                <div class="control-buttons">
+                    <button class="btn btn-play" onclick="play()" title="播放">▶</button>
+                    <button class="btn btn-pause" onclick="pause()" title="暂停">⏸</button>
+                    <button class="btn btn-prev" onclick="prevStep()" title="上一步">⏮</button>
+                    <button class="btn btn-next" onclick="nextStep()" title="下一步">⏭</button>
+                    <button class="btn btn-reset" onclick="reset()" title="重置">🔄</button>
+                </div>
+                
+                <div class="control-group">
+                    <label>音效:</label>
+                    <button class="btn btn-sound active" id="sound-toggle" onclick="toggleSound()">🔊 开</button>
+                </div>
+            </div>
+            
+            <div class="info-panel">
+                <h2>信息面板</h2>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">步数:</span>
+                        <span class="stat-value" id="step-count">0 / 0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">时间:</span>
+                        <span class="stat-value" id="timer">00:00</span>
+                    </div>
+                </div>
+                
+                <div class="steps-list-container">
+                    <h3>步骤列表:</h3>
+                    <ul class="steps-list" id="steps-list"></ul>
+                </div>
+            </div>
+        </footer>
+        
+        <div class="celebration-container" id="celebration">
+            <div class="celebration-text">🎉 Congratulations! 🎉</div>
+            <div class="confetti-container" id="confetti"></div>
+        </div>
+        
+        <div class="error-toast" id="error-toast">
+            <span class="error-message"></span>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
