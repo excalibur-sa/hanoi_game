@@ -1,0 +1,775 @@
+/* 基础样式和字体 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(180deg, #5c94fc 0%, #5c94fc 60%, #87CEEB 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+/* 标题区域 */
+.title-area {
+    text-align: center;
+    padding: 20px 0;
+    color: #fff;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+
+.title-area h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    animation: titleBounce 1s ease-in-out infinite;
+}
+
+.title-area .subtitle {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+@keyframes titleBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* 可视化区域 */
+.visualization-area {
+    position: relative;
+    height: 400px;
+    background: linear-gradient(180deg, #5c94fc 0%, #87CEEB 70%, #5a8f3e 70%, #4a7a2e 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 天空背景和云朵 */
+.sky-background {
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    pointer-events: none;
+}
+
+.cloud {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.cloud-1 {
+    width: 80px;
+    height: 40px;
+    top: 30px;
+    left: 10%;
+    animation: cloudFloat 20s linear infinite;
+}
+
+.cloud-1::before {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 10px;
+}
+
+.cloud-1::after {
+    width: 40px;
+    height: 40px;
+    top: -20px;
+    left: 40px;
+}
+
+.cloud-2 {
+    width: 100px;
+    height: 50px;
+    top: 60px;
+    left: 50%;
+    animation: cloudFloat 25s linear infinite reverse;
+}
+
+.cloud-2::before {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: 15px;
+}
+
+.cloud-2::after {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 50px;
+}
+
+.cloud-3 {
+    width: 70px;
+    height: 35px;
+    top: 20px;
+    left: 80%;
+    animation: cloudFloat 18s linear infinite;
+}
+
+.cloud-3::before {
+    width: 45px;
+    height: 45px;
+    top: -22px;
+    left: 8px;
+}
+
+.cloud-3::after {
+    width: 35px;
+    height: 35px;
+    top: -18px;
+    left: 35px;
+}
+
+@keyframes cloudFloat {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-200px); }
+}
+
+/* 灌木 */
+.bush {
+    position: absolute;
+    bottom: 30%;
+    width: 60px;
+    height: 30px;
+    background: #228B22;
+    border-radius: 50% 50% 50% 50%;
+}
+
+.bush::before,
+.bush::after {
+    content: '';
+    position: absolute;
+    background: #228B22;
+    border-radius: 50%;
+}
+
+.bush-1 {
+    left: 5%;
+}
+
+.bush-1::before {
+    width: 40px;
+    height: 40px;
+    top: -20px;
+    left: 5px;
+}
+
+.bush-1::after {
+    width: 35px;
+    height: 35px;
+    top: -15px;
+    left: 30px;
+}
+
+.bush-2 {
+    right: 8%;
+}
+
+.bush-2::before {
+    width: 45px;
+    height: 45px;
+    top: -22px;
+    left: 0;
+}
+
+.bush-2::after {
+    width: 38px;
+    height: 38px;
+    top: -18px;
+    left: 28px;
+}
+
+/* 地面 */
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30%;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            #c84c0c 0px,
+            #c84c0c 40px,
+            #e09050 40px,
+            #e09050 80px
+        );
+    border-top: 8px solid #000;
+}
+
+.ground::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            #5a8f3e 0px,
+            #5a8f3e 40px,
+            #4a7a2e 40px,
+            #4a7a2e 80px
+        );
+}
+
+/* 柱子容器 */
+.towers-container {
+    position: absolute;
+    bottom: 30%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 0 50px;
+    height: 280px;
+}
+
+/* 单个柱子 */
+.tower {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 100%;
+}
+
+.tower-label {
+    position: absolute;
+    bottom: -35px;
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 2px 2px 0 #000;
+    z-index: 10;
+}
+
+/* 管道样式（超级玛丽风格） */
+.pipe {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+}
+
+.pipe-top {
+    width: 80px;
+    height: 20px;
+    background: linear-gradient(90deg, #1a5c1a 0%, #2d8c2d 30%, #3cb43c 50%, #2d8c2d 70%, #1a5c1a 100%);
+    border: 3px solid #0a3a0a;
+    border-radius: 5px 5px 0 0;
+    box-shadow: inset 0 5px 10px rgba(255, 255, 255, 0.3);
+}
+
+.pipe-body {
+    width: 70px;
+    height: 200px;
+    background: linear-gradient(90deg, #1a5c1a 0%, #2d8c2d 30%, #3cb43c 50%, #2d8c2d 70%, #1a5c1a 100%);
+    border: 3px solid #0a3a0a;
+    border-top: none;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* 圆盘容器 */
+.disks-container {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 4px;
+    z-index: 10;
+}
+
+/* 圆盘样式 */
+.disk {
+    height: 25px;
+    border-radius: 12px;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    position: relative;
+}
+
+.disk:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.disk.selected {
+    animation: diskPulse 0.5s ease-in-out infinite;
+    box-shadow: 
+        0 0 20px #FFD700,
+        0 8px 16px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+.disk.hint {
+    animation: hintPulse 0.8s ease-in-out infinite;
+}
+
+@keyframes diskPulse {
+    0%, 100% { transform: translateY(-5px) scale(1.02); }
+    50% { transform: translateY(-8px) scale(1.05); }
+}
+
+@keyframes hintPulse {
+    0%, 100% { 
+        box-shadow: 0 0 10px #00FF00, 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    50% { 
+        box-shadow: 0 0 30px #00FF00, 0 0 50px #00FF00, 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* 圆盘颜色（从大到小） */
+.disk-1 { width: 160px; background: linear-gradient(180deg, #ff6b6b 0%, #ee5a5a 50%, #cc4444 100%); }
+.disk-2 { width: 140px; background: linear-gradient(180deg, #ffa94d 0%, #ff9533 50%, #e67700 100%); }
+.disk-3 { width: 120px; background: linear-gradient(180deg, #ffd43b 0%, #fab005 50%, #e6a000 100%); }
+.disk-4 { width: 100px; background: linear-gradient(180deg, #69db7c 0%, #51cf66 50%, #37b24d 100%); }
+.disk-5 { width: 90px; background: linear-gradient(180deg, #38d9a9 0%, #20c997 50%, #12b886 100%); }
+.disk-6 { width: 80px; background: linear-gradient(180deg, #4dabf7 0%, #339af0 50%, #1c7ed6 100%); }
+.disk-7 { width: 70px; background: linear-gradient(180deg, #9775fa 0%, #845ef7 50%, #7048e8 100%); }
+.disk-8 { width: 65px; background: linear-gradient(180deg, #e599f7 0%, #da77f2 50%, #be4bdb 100%); }
+.disk-9 { width: 60px; background: linear-gradient(180deg, #f783ac 0%, #f06595 50%, #e64980 100%); }
+.disk-10 { width: 55px; background: linear-gradient(180deg, #ffa8a8 0%, #ff8787 50%, #fa5252 100%); }
+
+/* 移动动画 */
+.disk.moving {
+    transition: all var(--move-duration, 0.5s) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 100;
+}
+
+/* 控制和信息面板 */
+.panels-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.control-panel,
+.info-panel {
+    flex: 1;
+    min-width: 300px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.control-panel h2,
+.info-panel h2 {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #FFD700;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.control-group {
+    margin-bottom: 15px;
+}
+
+.control-group label {
+    display: block;
+    font-size: 0.7rem;
+    margin-bottom: 8px;
+    color: #aaa;
+}
+
+/* 数字输入 */
+.number-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.number-input input {
+    width: 60px;
+    height: 35px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    background: #333;
+    color: #fff;
+    border: 2px solid #555;
+    border-radius: 5px;
+}
+
+.number-input input:focus {
+    outline: none;
+    border-color: #FFD700;
+}
+
+.btn-decrease,
+.btn-increase {
+    width: 35px;
+    height: 35px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    background: linear-gradient(180deg, #555 0%, #333 100%);
+    color: #fff;
+    border: 2px solid #666;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-decrease:hover,
+.btn-increase:hover {
+    background: linear-gradient(180deg, #666 0%, #444 100%);
+    border-color: #FFD700;
+}
+
+/* 速度按钮 */
+.speed-buttons,
+.mode-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.speed-btn,
+.mode-btn {
+    flex: 1;
+    padding: 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6rem;
+    background: linear-gradient(180deg, #444 0%, #222 100%);
+    color: #888;
+    border: 2px solid #555;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.speed-btn:hover,
+.mode-btn:hover {
+    background: linear-gradient(180deg, #555 0%, #333 100%);
+    color: #fff;
+}
+
+.speed-btn.active,
+.mode-btn.active {
+    background: linear-gradient(180deg, #4CAF50 0%, #2E7D32 100%);
+    color: #fff;
+    border-color: #66BB6A;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+/* 控制按钮 */
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    background: linear-gradient(180deg, #666 0%, #444 100%);
+    color: #fff;
+    border: 3px solid #888;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-play {
+    background: linear-gradient(180deg, #4CAF50 0%, #2E7D32 100%);
+    border-color: #66BB6A;
+}
+
+.btn-play:hover {
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+}
+
+.btn-pause {
+    background: linear-gradient(180deg, #FF9800 0%, #F57C00 100%);
+    border-color: #FFB74D;
+}
+
+.btn-reset {
+    background: linear-gradient(180deg, #2196F3 0%, #1565C0 100%);
+    border-color: #42A5F5;
+}
+
+.btn-hint {
+    width: auto;
+    padding: 0 20px;
+    font-size: 0.7rem;
+    background: linear-gradient(180deg, #9C27B0 0%, #7B1FA2 100%);
+    border-color: #BA68C8;
+}
+
+.btn-sound {
+    width: auto;
+    padding: 0 15px;
+    font-size: 0.7rem;
+    background: linear-gradient(180deg, #607D8B 0%, #455A64 100%);
+    border-color: #78909C;
+}
+
+.btn-sound:hover {
+    box-shadow: 0 0 15px rgba(96, 125, 139, 0.6);
+}
+
+.btn-sound.muted {
+    background: linear-gradient(180deg, #f44336 0%, #c62828 100%);
+    border-color: #ef5350;
+}
+
+/* 信息面板统计 */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.6rem;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1rem;
+    color: #FFD700;
+}
+
+/* 步骤列表 */
+.steps-list-container {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.steps-list-container h3 {
+    font-size: 0.7rem;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.steps-list {
+    list-style: none;
+}
+
+.steps-list li {
+    padding: 8px 12px;
+    font-size: 0.6rem;
+    color: #888;
+    border-bottom: 1px solid #333;
+    transition: all 0.2s ease;
+}
+
+.steps-list li.current {
+    background: rgba(76, 175, 80, 0.3);
+    color: #fff;
+    border-left: 3px solid #4CAF50;
+}
+
+.steps-list li.completed {
+    color: #4CAF50;
+}
+
+/* 庆祝动画 */
+.celebration-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.celebration-container.show {
+    display: flex;
+}
+
+.celebration-text {
+    font-size: 2rem;
+    color: #FFD700;
+    text-shadow: 3px 3px 0 #000;
+    animation: celebrationBounce 0.5s ease-in-out infinite;
+    z-index: 1001;
+}
+
+@keyframes celebrationBounce {
+    0%, 100% { transform: scale(1) rotate(-2deg); }
+    50% { transform: scale(1.1) rotate(2deg); }
+}
+
+.confetti-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* 错误提示 */
+.error-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(255, 0, 0, 0.9);
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    z-index: 1002;
+    transition: transform 0.3s ease;
+}
+
+.error-toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .title-area h1 {
+        font-size: 1.5rem;
+    }
+    
+    .visualization-area {
+        height: 350px;
+    }
+    
+    .towers-container {
+        padding: 0 20px;
+    }
+    
+    .tower {
+        width: 120px;
+    }
+    
+    .pipe-top {
+        width: 60px;
+        height: 15px;
+    }
+    
+    .pipe-body {
+        width: 50px;
+        height: 150px;
+    }
+    
+    .disk { height: 20px; }
+    .disk-1 { width: 110px; }
+    .disk-2 { width: 100px; }
+    .disk-3 { width: 90px; }
+    .disk-4 { width: 80px; }
+    .disk-5 { width: 70px; }
+    .disk-6 { width: 65px; }
+    .disk-7 { width: 60px; }
+    .disk-8 { width: 55px; }
+    .disk-9 { width: 50px; }
+    .disk-10 { width: 45px; }
+    
+    .panels-container {
+        flex-direction: column;
+    }
+    
+    .control-panel,
+    .info-panel {
+        min-width: 100%;
+    }
+    
+    .btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+}
